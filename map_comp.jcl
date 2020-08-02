@@ -1,4 +1,4 @@
-//COBCOMP  JOB 'Compile COBOL',NOTIFY=&SYSUID
+//MAPCOMP  JOB 'Compile MAP',NOTIFY=&SYSUID
 //IBMLIB   JCLLIB ORDER=DFH320.CICS.SDFHPROC
 //* make sure that the MAPLIB is pointed
 //* to your CICS loadlib. If you are not sure about this

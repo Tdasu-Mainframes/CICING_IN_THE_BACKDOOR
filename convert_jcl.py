@@ -12,7 +12,7 @@ for line in lines:
         output_cob.write("     MOVE '" + line + "' TO WS-LINE("+ str(count)+")\n")
     elif len(line) <= 54:
         output_cob.write("     MOVE '" + line + "'\n")
-        output_cob.write("-     TO WS-LINE("+ str(count)+")\n")
+        output_cob.write("      TO WS-LINE("+ str(count)+")\n")
     else:
         line1 = line[:55]
         line2 = line[55:]
