@@ -1,0 +1,25 @@
+import sys
+input_rexx = open(sys.argv[1], 'r')
+lines = input_rexx.readlines()
+output_jcl = open("convert_rexx.jcl","w+")
+count = 1
+
+output_jcl.write("//CATSOJO  JOB 'CATSO'\n")
+output_jcl.write("//DEL0010  EXEC PGM=IEFBR14\n")
+output_jcl.write("//DSN2DEL  DD   DSN=DOGE.CATSO,DISP=(MOD,DELETE),\n")
+output_jcl.write("//         SPACE=(CYL,0)\n")
+output_jcl.write("//         EXEC PGM=IEBGENER\n")
+output_jcl.write("//SYSIN    DD DUMMY\n")
+output_jcl.write("//SYSPRINT DD SYSOUT=X\n")
+output_jcl.write("//SYSUT1   DD *,DLM=XX\n")
+for line in lines:
+    output_jcl.write(line)
+output_jcl.write("/XX\n")
+output_jcl.write("//SYSUT2   DD DISP=(NEW,CATLG,DELETE),DSN=DOGE.CATSO,\n")
+output_jcl.write("//         SPACE=(CYL,10)\n")
+output_jcl.write("//RUNCAT  EXEC PGM=IKJEFT01\n")
+output_jcl.write("//SYSTSIN  DD *\n")
+output_jcl.write("  EXEC 'DOGE.CATSO' 'R 192.168.1.138 1234'\n")
+output_jcl.write("/*\n")
+output_jcl.write("//SYSIN    DD DUMMY\n")
+output_jcl.write("//SYSTSPRT DD SYSOUT=*\n")
